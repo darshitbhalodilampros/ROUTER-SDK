@@ -1,4 +1,4 @@
-import { Percent, Token } from 'sdkcore18'
+import { Percent, Token } from 'lampros-core'
 import JSBI from 'jsbi'
 import { PaymentsExtended } from './paymentsExtended'
 

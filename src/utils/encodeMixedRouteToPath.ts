@@ -1,6 +1,6 @@
 import { pack } from '@ethersproject/solidity'
-import { Currency, Token } from 'sdkcore18'
-import { Pool } from 'v3sdk18'
+import { Currency, Token } from 'lampros-core'
+import { Pool } from 'lampros-v3'
 // import { Pair } from '@pollum-io/v1-sdk'
 import { MixedRouteSDK } from '../entities/mixedRoute/route'
 import { V1_FEE_PATH_PLACEHOLDER } from '../constants'

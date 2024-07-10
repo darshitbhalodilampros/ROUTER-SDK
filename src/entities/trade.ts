@@ -1,6 +1,6 @@
-import { Currency, CurrencyAmount, Fraction, Percent, Price, TradeType } from 'sdkcore18'
+import { Currency, CurrencyAmount, Fraction, Percent, Price, TradeType } from 'lampros-core'
 // import { Pair, Route as V1RouteSDK, Trade as V1TradeSDK } from '@pollum-io/v1-sdk'
-import { Pool, Route as V2RouteSDK, Trade as V2TradeSDK } from 'v3sdk18'
+import { Pool, Route as V2RouteSDK, Trade as V2TradeSDK } from 'lampros-v3'
 import invariant from 'tiny-invariant'
 import { ONE, ZERO } from '../constants'
 // import { MixedRouteSDK } from './mixedRoute/route'

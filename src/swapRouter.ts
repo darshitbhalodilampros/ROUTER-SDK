@@ -1,5 +1,5 @@
 import { Interface } from '@ethersproject/abi'
-import { Currency, CurrencyAmount, Percent, TradeType, validateAndParseAddress, WETH9 } from 'sdkcore18'
+import { Currency, CurrencyAmount, Percent, TradeType, validateAndParseAddress, WETH9 } from 'lampros-core'
 // import { abi } from '@pollum-io/swap-router-contracts/artifacts/contracts/interfaces/ISwapRouter02.sol/ISwapRouter02.json'
 import { abi } from '@uniswap/swap-router-contracts/artifacts/contracts/interfaces/ISwapRouter02.sol/ISwapRouter02.json'
 // import { Trade as V1Trade } from '@pollum-io/v1-sdk'
@@ -14,7 +14,7 @@ import {
   SelfPermit,
   toHex,
   Trade as V2Trade,
-} from 'v3sdk18'
+} from 'lampros-v3'
 import invariant from 'tiny-invariant'
 import JSBI from 'jsbi'
 import { ADDRESS_THIS, MSG_SENDER } from './constants'

@@ -1,8 +1,8 @@
 import { Interface } from '@ethersproject/abi'
-import { BigintIsh } from 'sdkcore18'
+import { BigintIsh } from 'lampros-core'
 // import { abi } from '@pollum-io/swap-router-contracts/artifacts/contracts/interfaces/IMulticallExtended.sol/IMulticallExtended.json'
 import { abi } from '@uniswap/swap-router-contracts/artifacts/contracts/interfaces/IMulticallExtended.sol/IMulticallExtended.json'
-import { Multicall, toHex } from 'v3sdk18'
+import { Multicall, toHex } from 'lampros-v3'
 
 // deadline or previousBlockhash
 export type Validation = BigintIsh | string

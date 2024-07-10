@@ -1,9 +1,9 @@
 // entities/route.ts
 
 // import { Route as V1RouteSDK, Pair } from '@pollum-io/v1-sdk'
-import { Route as V2RouteSDK, Pool } from 'v3sdk18'
+import { Route as V2RouteSDK, Pool } from 'lampros-v3'
 import { Protocol } from './protocol'
-import { Currency, Price, Token } from 'sdkcore18'
+import { Currency, Price, Token } from 'lampros-core'
 // import { MixedRouteSDK } from './mixedRoute/route'
 
 export interface IRoute<TInput extends Currency, TOutput extends Currency, TPool extends Pool> {

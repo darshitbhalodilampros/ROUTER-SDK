@@ -1,7 +1,7 @@
 import invariant from 'tiny-invariant'
 
-import { Currency, Price, Token } from 'sdkcore18'
-import { Pool } from 'v3sdk18'
+import { Currency, Price, Token } from 'lampros-core'
+import { Pool } from 'lampros-v3'
 // import { Pair } from '@pollum-io/v1-sdk'
 
 type TPool = Pool

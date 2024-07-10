@@ -1,5 +1,5 @@
 {
-  "name": "routersdk18",
+  "name": "lampros-router",
   "version": "0.0.1",
   "description": "An sdk for routing swaps using Pegasys v1 and Pegasys v2.",
   "publishConfig": {
@@ -27,9 +27,9 @@
   "license": "MIT",
   "dependencies": {
     "@ethersproject/abi": "^5.5.0",
-    "sdkcore18": "0.0.1",
     "@uniswap/swap-router-contracts": "^1.1.0",
-    "v3sdk18": "0.0.1"
+    "lampros-core": "^0.0.1",
+    "lampros-v3": "^0.0.1"
   },
   "devDependencies": {
     "@types/jest": "^24.0.25",

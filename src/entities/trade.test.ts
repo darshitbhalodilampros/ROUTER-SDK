@@ -1,4 +1,4 @@
-import { sqrt, Token, CurrencyAmount, TradeType, WETH9, Ether, Percent, Price } from 'sdkcore18'
+import { sqrt, Token, CurrencyAmount, TradeType, WETH9, Ether, Percent, Price } from 'lampros-core'
 import JSBI from 'jsbi'
 import { RouteV2 } from './route'
 import { Trade } from './trade'
@@ -10,7 +10,7 @@ import {
   TickMath,
   nearestUsableTick,
   encodeSqrtRatioX96,
-} from 'v3sdk18'
+} from 'lampros-v3'
 // import { Pair, Route as V1RouteSDK } from '@pollum-io/v1-sdk'
 // import { MixedRouteSDK } from './mixedRoute/route'
 

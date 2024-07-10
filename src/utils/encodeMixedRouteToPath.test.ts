@@ -1,6 +1,6 @@
-import { Ether, Token, WETH9 } from 'sdkcore18'
+import { Ether, Token, WETH9 } from 'lampros-core'
 // import { Pair } from '@pollum-io/v1-sdk'
-import { encodeSqrtRatioX96, FeeAmount, Pool } from 'v3sdk18'
+import { encodeSqrtRatioX96, FeeAmount, Pool } from 'lampros-v3'
 import { MixedRouteSDK } from '../entities/mixedRoute/route'
 import { encodeMixedRouteToPath } from './encodeMixedRouteToPath'
 

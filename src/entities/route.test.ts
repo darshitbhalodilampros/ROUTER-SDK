@@ -1,5 +1,5 @@
-import { Ether, Token, WETH9 } from 'sdkcore18'
-import { Route as V2RouteSDK, Pool, FeeAmount, TickMath, encodeSqrtRatioX96 } from 'v3sdk18'
+import { Ether, Token, WETH9 } from 'lampros-core'
+import { Route as V2RouteSDK, Pool, FeeAmount, TickMath, encodeSqrtRatioX96 } from 'lampros-v3'
 import { RouteV2 } from './route'
 import { Protocol } from './protocol'
 // import { Route as V1RouteSDK, Pair } from '@pollum-io/v1-sdk'

@@ -1,6 +1,6 @@
-import { Currency, Fraction, Percent, Price, sortedInsert, CurrencyAmount, TradeType, Token } from 'sdkcore18'
+import { Currency, Fraction, Percent, Price, sortedInsert, CurrencyAmount, TradeType, Token } from 'lampros-core'
 // import { Pair } from '@pollum-io/v1-sdk'
-import { BestTradeOptions, Pool } from 'v3sdk18'
+import { BestTradeOptions, Pool } from 'lampros-v3'
 import invariant from 'tiny-invariant'
 import { ONE, ZERO } from '../../constants'
 import { MixedRouteSDK } from './route'

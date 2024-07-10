@@ -1,4 +1,4 @@
-import { CurrencyAmount, Ether, Percent, Token, TradeType, WETH9 } from 'sdkcore18'
+import { CurrencyAmount, Ether, Percent, Token, TradeType, WETH9 } from 'lampros-core'
 // import { Pair, Route as V1Route, Trade as V1Trade } from '@pollum-io/v1-sdk'
 import {
   encodeSqrtRatioX96,
@@ -10,7 +10,7 @@ import {
   TickMath,
   TICK_SPACINGS,
   Trade as V2Trade,
-} from 'v3sdk18'
+} from 'lampros-v3'
 import JSBI from 'jsbi'
 import { SwapRouter } from '.'
 import { ApprovalTypes } from './approveAndCall'
