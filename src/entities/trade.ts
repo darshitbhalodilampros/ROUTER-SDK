@@ -2,7 +2,7 @@ import { Currency, CurrencyAmount, Fraction, Percent, Price, TradeType } from 'l
 // import { Pair, Route as V1RouteSDK, Trade as V1TradeSDK } from '@pollum-io/v1-sdk'
 import { Pool, Route as V2RouteSDK, Trade as V2TradeSDK } from 'lampros-v3'
 import invariant from 'tiny-invariant'
-import { ONE, ZERO } from '../constants'
+import { ONE, ONE_HUNDRED_PERCENT, ZERO, ZERO_PERCENT } from '../constants'
 // import { MixedRouteSDK } from './mixedRoute/route'
 // import { MixedRouteTrade as MixedRouteTradeSDK } from './mixedRoute/trade'
 import { IRoute, RouteV2 } from './route'
@@ -158,6 +158,27 @@ export class Trade<TInput extends Currency, TOutput extends Currency, TTradeType
     )
   }
 
+  // Added code for experiment
+  /**
+   * Returns the sell tax of the input token
+   */
+  public get inputTax(): Percent {
+    const inputCurrency = this.inputAmount.currency
+    if (inputCurrency.isNative || !inputCurrency.wrapped.sellFeeBps) return ZERO_PERCENT
+
+    return new Percent(inputCurrency.wrapped.sellFeeBps.toNumber(), 10000)
+  }
+
+  /**
+   * Returns the buy tax of the output token
+   */
+  public get outputTax(): Percent {
+    const outputCurrency = this.outputAmount.currency
+    if (outputCurrency.isNative || !outputCurrency.wrapped.buyFeeBps) return ZERO_PERCENT
+
+    return new Percent(outputCurrency.wrapped.buyFeeBps.toNumber(), 10000)
+  }
+
   /**
    * The cached result of the price impact computation
    * @private
@@ -166,22 +187,52 @@ export class Trade<TInput extends Currency, TOutput extends Currency, TTradeType
   /**
    * Returns the percent difference between the route's mid price and the price impact
    */
+
+  // New code for experiment
   public get priceImpact(): Percent {
     if (this._priceImpact) {
       return this._priceImpact
     }
 
+    // returns 0% price impact even though this may be inaccurate as a swap may have occured.
+    // because we're unable to derive the pre-buy-tax amount, use 0% as a placeholder.
+    if (this.outputTax.equalTo(ONE_HUNDRED_PERCENT)) return ZERO_PERCENT
+
     let spotOutputAmount = CurrencyAmount.fromRawAmount(this.outputAmount.currency, 0)
     for (const { route, inputAmount } of this.swaps) {
       const midPrice = route.midPrice
-      spotOutputAmount = spotOutputAmount.add(midPrice.quote(inputAmount))
+      const postTaxInputAmount = inputAmount.multiply(new Fraction(ONE).subtract(this.inputTax))
+      spotOutputAmount = spotOutputAmount.add(midPrice.quote(postTaxInputAmount))
     }
 
-    const priceImpact = spotOutputAmount.subtract(this.outputAmount).divide(spotOutputAmount)
+    // if the total output of this trade is 0, then most likely the post-tax input was also 0, and therefore this swap
+    // does not move the pools' market price
+    if (spotOutputAmount.equalTo(ZERO)) return ZERO_PERCENT
+
+    const preTaxOutputAmount = this.outputAmount.divide(new Fraction(ONE).subtract(this.outputTax))
+    const priceImpact = spotOutputAmount.subtract(preTaxOutputAmount).divide(spotOutputAmount)
     this._priceImpact = new Percent(priceImpact.numerator, priceImpact.denominator)
 
     return this._priceImpact
   }
+
+  // Main code for routing-api
+  // public get priceImpact(): Percent {
+  //   if (this._priceImpact) {
+  //     return this._priceImpact
+  //   }
+
+  //   let spotOutputAmount = CurrencyAmount.fromRawAmount(this.outputAmount.currency, 0)
+  //   for (const { route, inputAmount } of this.swaps) {
+  //     const midPrice = route.midPrice
+  //     spotOutputAmount = spotOutputAmount.add(midPrice.quote(inputAmount))
+  //   }
+
+  //   const priceImpact = spotOutputAmount.subtract(this.outputAmount).divide(spotOutputAmount)
+  //   this._priceImpact = new Percent(priceImpact.numerator, priceImpact.denominator)
+
+  //   return this._priceImpact
+  // }
 
   /**
    * Get the minimum amount that must be received from this trade for the given slippage tolerance
